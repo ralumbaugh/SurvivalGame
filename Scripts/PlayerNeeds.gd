@@ -4,6 +4,7 @@ var health : Need
 var hunger : Need
 var thirst : Need
 var sleep : Need
+var is_drinking : bool = false
 
 @export var no_hunger_health_decay: float
 @export var no_thirst_health_decay: float
@@ -22,14 +23,17 @@ func _ready():
 
 func _process(delta):
 	hunger.subtract(hunger.decay_rate * delta)
-	thirst.subtract(thirst.decay_rate * delta)
+	if is_drinking:
+		thirst.add(thirst.regen_rate * delta)
+	else:
+		thirst.subtract(thirst.decay_rate * delta)
 	sleep.add(sleep.regen_rate * delta)
 	
 	if hunger.value == 0:
 		health.subtract(no_hunger_health_decay * delta)
 	if thirst.value == 0:
 		health.subtract(no_thirst_health_decay * delta)
-	
+		
 	health.update_ui_bar()
 	hunger.update_ui_bar()
 	thirst.update_ui_bar()

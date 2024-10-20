@@ -11,12 +11,14 @@ var look_sens : float = 0.5
 var min_x_rot : float = -85.0
 var max_x_rot : float = 85.0
 var mouse_dir : Vector2
+var player_needs: Node3D
 
 func _ready():
 	camera = get_node("Camera3D")
 	head = get_node("Head")
 	remove_child(camera)
 	get_node("/root/Main").add_child.call_deferred(camera)
+	player_needs = get_node("PlayerNeeds")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _input(event):
@@ -26,6 +28,12 @@ func _input(event):
 		
 		camera.rotation_degrees.y += event.relative.x * -look_sens
 	
+	# Check if they're close enough to water level to drink
+	if position.y <= .1:
+		if event.is_action_pressed("click"):
+			player_needs.is_drinking = !player_needs.is_drinking
+	else:
+		player_needs.is_drinking = false
 	
 func _process(delta):
 	camera.position = head.global_position

@@ -139,6 +139,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("3_jr1xm")
 max_value = 100.0
 start_value = 80.0
+regen_rate = 5.0
 decay_rate = 1.5
 ui_bar = NodePath("Need Bar")
 
