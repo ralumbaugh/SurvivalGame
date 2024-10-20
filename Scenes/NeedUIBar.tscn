@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3vvbmnbjvsyt"]
+
+[ext_resource type="Script" path="res://Scripts/NeedUIBar.gd" id="1_evi0s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov1tt"]
+bg_color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwr5e"]
+bg_color = Color(0.847059, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h6ypf"]
+font_size = 25
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Need Bar" type="ProgressBar"]
+offset_right = 300.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ov1tt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vwr5e")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_evi0s")
+
+[node name="NeedText" type="Label" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 45.0
+text = "Health: 50/100"
+label_settings = SubResource("LabelSettings_h6ypf")
+horizontal_alignment = 1
+vertical_alignment = 1
